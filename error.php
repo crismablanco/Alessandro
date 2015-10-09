@@ -13,7 +13,7 @@
 <div class="container">
 
 	<div class="page-header">
-	    <h1>Ops! <small>You can not access here! Contact to your boss for more information.</small></h1>
+	    <h1>Opsss! <small>You can not access here! Contact to your boss for more information.</small></h1>
 
 	</div>
 	<div class="text-center">
