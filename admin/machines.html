@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+/* 
+
+System created by Cristian Blanco
+crismablanco@gmail.com
+
+*/
+-->
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="../favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>Editor - Responsive</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.0.1/css/select.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="./resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="./resources/demo.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.0.1/js/dataTables.select.min.js"></script>
+	<script type="text/javascript" language="javascript" src="./js/dataTables.editor.min.js"></script>
+	<script type="text/javascript" language="javascript" src="./resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="./resources/demo.js"></script>
+	<script type="text/javascript" language="javascript" src="./resources/editor-demo.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+
+
+var editor; // use a global for the submit and return data rendering in the examples
+
+$(document).ready(function() {
+	editor = new $.fn.dataTable.Editor( {
+		ajax: "./machines.php",
+		table: "#example",
+		fields: [ {
+				label: "Name:",
+				name: "name"
+			}
+		]
+	} );
+
+
+	// Activate an inline edit on click of a table cell
+	// or a DataTables Responsive data cell
+	$('#example').on( 'click', 'tbody tr:not(.child) td:not(:first-child), tbody span.dtr-data', function (e) {
+		editor.inline( this );
+	} );
+
+	$('#example').DataTable( {
+		iDisplayLength: 20,
+		responsive: true,
+		dom: "Bfrtip",
+		ajax: "./machines.php",
+		columns: [
+			{
+				data: null,
+				defaultContent: '',
+				className: 'select-checkbox',
+				orderable: false
+			},
+			{ data: "id" },
+			{ data: "name" }
+		],
+		order: [ 1, 'asc' ],
+		select: {
+			style:    'os',
+			selector: 'td:first-child'
+		},
+		buttons: [
+			{ extend: "create", editor: editor },
+			{ extend: "edit",   editor: editor },
+			{ extend: "remove", editor: editor }
+		]
+	} );
+} );
+
+
+
+	</script>
+</head>
+
+<body class="dt-example">
+	<div class="container">
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./index.php"><img alt="Brand" src="../imgs/italy_640.png" width="50px"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Machines<span class="sr-only">(current)</span></a></li>
+        <li><a href="clients.html">Clients</a></li>
+        <li><a href="clientsxmachines.html">Clients for Machine</a></li>
+        <li><a href="articles.html">Articles</a></li>
+      </ul>
+     
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+		<section>
+			<h1>Machines Editor</h1>
+
+			<table id="example" class="display nowrap" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>
+
+						<th>ID</th>
+						<th>Name</th>
+					</tr>
+				</thead>
+			</table>
+
+		</section>
+	</div>
+</body>
+</html>
