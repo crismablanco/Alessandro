@@ -1,6 +1,6 @@
 # System 
 
-- The system is a localhost app that is used to register pulls of jobs.
+- The system is a localhost app that is used to manage job orders for machines and customers
 - You have N number of machines and clients.
 - Each machine "starts" its own job with a client and when the job is done, the worker set the job "stopped".
 - Then a new record is stored on the DB: Machine_id ** // Customer_id ** // Date_Time_Start ** // Date_Time_Finish **
